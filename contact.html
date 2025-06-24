@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Juan Miguel Antonio</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <h1 class="logo">Juan Miguel Antonio</h1>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container fade-in">
+        <section class="contact-section">
+            <h2><br>Contact Me</h2>
+            <p><br>If you'd like to reach out, feel free to send me a message directly through this form:</p>
+
+            <form action="mailto:fizzwick8341@gmail.com" method="POST" enctype="text/plain" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required />
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required />
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" rows="6" required></textarea>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+            <p style="margin-top: 15px; font-size: 0.95rem;">Or email me directly at <a
+                    href="mailto:fizzwick8341@gmail.com" style="color: #e74c3c;">fizzwick8341@gmail.com</a></p>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Juan Miguel Antonio. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
