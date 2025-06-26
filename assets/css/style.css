@@ -1,12 +1,14 @@
-/* 1. Global Reset + Font */
+/* ========= GOOGLE FONT ========= */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+/* ========= RESET ========= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ========= BASE ========= */
 html,
 body {
     height: 100%;
@@ -15,21 +17,30 @@ body {
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f0f0f, #1f1f1f, #8b0000);
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 35%, #2b2b2b 65%, #8b0000 100%);
     color: #f4f4f4;
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* 2. Reusable Container */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
 .container {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-/* 3. Navigation */
+/* ========= HEADER / NAVBAR ========= */
 .site-header {
     background-color: #141414;
     padding: 20px 0;
@@ -46,6 +57,8 @@ body {
     font-size: 2rem;
     color: #e74c3c;
     font-weight: 700;
+    margin-left: -10px;
+    /* Moved logo slightly to the left */
 }
 
 .nav-links {
@@ -56,7 +69,6 @@ body {
 .nav-links a {
     color: #f4f4f4;
     font-weight: 500;
-    text-decoration: none;
     transition: color 0.3s;
 }
 
@@ -65,14 +77,14 @@ body {
     color: #e74c3c;
 }
 
-/* 4. Hero Section */
+/* ========= HERO SECTION ========= */
 .hero {
     flex-grow: 1;
     padding: 100px 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #111, #1a1a1a);
+    background: transparent;
     text-align: center;
     min-height: 80vh;
 }
@@ -91,6 +103,7 @@ body {
     line-height: 1.6;
 }
 
+/* ========= BUTTON ========= */
 .btn {
     padding: 12px 30px;
     background-color: #e74c3c;
@@ -99,14 +112,14 @@ body {
     border-radius: 6px;
     font-weight: 600;
     transition: background-color 0.3s;
-    text-decoration: none;
+    display: inline-block;
 }
 
 .btn:hover {
     background-color: #c0392b;
 }
 
-/* 5. Footer */
+/* ========= FOOTER ========= */
 .site-footer {
     background-color: #141414;
     text-align: center;
@@ -117,40 +130,66 @@ body {
     margin-top: auto;
 }
 
-/* 6. Fade-in Animation */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeIn 0.7s ease-out forwards;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.project-grid {
+/* ========= PROJECT IMAGE GRID ========= */
+.project-grid-img {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+    gap: 25px;
     margin-top: 30px;
 }
 
-.project-card {
+.project-card-img {
     background-color: #1f1f1f;
-    padding: 20px;
-    border-left: 5px solid #e74c3c;
+    padding: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #e74c3c;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+    min-height: 480px;
+
+    /* ensures cards are the same height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-card-img img {
+    width: 100%;
+    height: 260px;
+    /* taller image container */
+    object-fit: contain;
+    /* show the whole image */
+    background-color: #1f1f1f;
+    /* for transparent PNGs */
     border-radius: 6px;
-    transition: 0.3s ease;
+    margin-bottom: 15px;
+
+    display: block;
+    margin: 0 auto;
 }
 
-.project-card:hover {
+
+
+.project-card-img h3 {
+    color: #e74c3c;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.project-card-img p {
+    font-size: 0.95rem;
+    color: #ccc;
+    margin-bottom: 15px;
+}
+
+.project-card-img:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.25);
 }
 
+
+/* ========= CONTACT FORM ========= */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -174,43 +213,16 @@ body {
     background-color: #333;
 }
 
-.project-grid-img {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-    margin-top: 30px;
+/* ========= ANIMATIONS ========= */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 0.7s ease-out forwards;
 }
 
-.project-card-img {
-    background-color: #1f1f1f;
-    padding: 20px;
-    border-radius: 8px;
-    border-left: 4px solid #e74c3c;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.project-card-img img {
-    width: 100%;
-    height: 170px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 15px;
-}
-
-.project-card-img h3 {
-    color: #e74c3c;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-}
-
-.project-card-img p {
-    font-size: 0.95rem;
-    color: #ccc;
-    margin-bottom: 15px;
-}
-
-.project-card-img:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.25);
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
