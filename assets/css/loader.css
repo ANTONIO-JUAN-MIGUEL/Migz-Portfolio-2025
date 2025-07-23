@@ -14,6 +14,8 @@
     z-index: 9999;
     opacity: 1;
     transition: opacity 0.5s ease, visibility 0.5s ease;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .loader-overlay.hidden {
@@ -57,6 +59,8 @@
     gap: 30px;
     z-index: 2;
     position: relative;
+    width: 100%;
+    max-width: 500px;
 }
 
 /* Hacker terminal window */
@@ -65,8 +69,9 @@
     border: 2px solid #e74c3c;
     border-radius: 10px;
     padding: 20px;
-    width: 400px;
-    max-width: 90vw;
+    width: 100%;
+    max-width: 400px;
+    min-width: 280px;
     box-shadow:
         0 0 20px rgba(231, 76, 60, 0.3),
         inset 0 0 20px rgba(231, 76, 60, 0.05);
@@ -128,6 +133,8 @@
     margin: 5px 0;
     opacity: 0;
     animation: typeWriter 0.5s ease-in-out forwards;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .terminal-line:nth-child(1) {
@@ -206,6 +213,7 @@
     position: relative;
     width: 80px;
     height: 80px;
+    flex-shrink: 0;
 }
 
 .circular-loader svg {
@@ -265,6 +273,8 @@
     font-weight: bold;
     text-align: center;
     animation: pulse 2s ease-in-out infinite;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 @keyframes pulse {
@@ -397,52 +407,6 @@
     }
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
-    .terminal-window {
-        width: 350px;
-        padding: 15px;
-    }
-
-    .terminal-content {
-        font-size: 12px;
-    }
-
-    .circular-loader {
-        width: 60px;
-        height: 60px;
-    }
-
-    .loading-text {
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .terminal-window {
-        width: 300px;
-        padding: 10px;
-    }
-
-    .terminal-content {
-        font-size: 11px;
-        min-height: 100px;
-    }
-
-    .circular-loader {
-        width: 50px;
-        height: 50px;
-    }
-
-    .loading-text {
-        font-size: 14px;
-    }
-
-    .percentage {
-        font-size: 14px;
-    }
-}
-
 /* Scanline effect */
 .scanline {
     position: absolute;
@@ -482,6 +446,9 @@
     text-align: center;
     opacity: 0;
     animation: bootFadeIn 1s ease-in-out 3s forwards;
+    padding: 0 20px;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 @keyframes bootFadeIn {
@@ -493,5 +460,247 @@
     100% {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* ===== ENHANCED MOBILE RESPONSIVE DESIGN ===== */
+
+/* Large tablets and small desktops */
+@media (max-width: 1024px) {
+    .loader-container {
+        gap: 25px;
+    }
+
+    .terminal-window {
+        max-width: 380px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 768px) {
+    .loader-overlay {
+        padding: 15px;
+    }
+
+    .loader-container {
+        gap: 20px;
+    }
+
+    .terminal-window {
+        max-width: 350px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .terminal-content {
+        font-size: 12px;
+        min-height: 100px;
+    }
+
+    .terminal-title {
+        font-size: 11px;
+    }
+
+    .terminal-button {
+        width: 10px;
+        height: 10px;
+    }
+
+    .circular-loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .loading-text {
+        font-size: 16px;
+    }
+
+    .percentage {
+        font-size: 14px;
+    }
+
+    .boot-sequence {
+        font-size: 11px;
+        bottom: 20px;
+    }
+
+    .matrix-char {
+        font-size: 12px;
+    }
+}
+
+/* Large phones */
+@media (max-width: 480px) {
+    .loader-overlay {
+        padding: 10px;
+    }
+
+    .loader-container {
+        gap: 15px;
+    }
+
+    .terminal-window {
+        max-width: 300px;
+        min-width: 250px;
+        padding: 12px;
+        border-radius: 6px;
+    }
+
+    .terminal-content {
+        font-size: 11px;
+        min-height: 90px;
+        line-height: 1.3;
+    }
+
+    .terminal-header {
+        margin-bottom: 12px;
+        padding-bottom: 8px;
+    }
+
+    .terminal-title {
+        font-size: 10px;
+    }
+
+    .terminal-button {
+        width: 8px;
+        height: 8px;
+    }
+
+    .terminal-buttons {
+        gap: 3px;
+    }
+
+    .circular-loader {
+        width: 50px;
+        height: 50px;
+    }
+
+    .loading-text {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .percentage {
+        font-size: 12px;
+    }
+
+    .boot-sequence {
+        font-size: 10px;
+        bottom: 15px;
+        padding: 0 15px;
+    }
+
+    .matrix-char {
+        font-size: 10px;
+    }
+
+    /* Reduce matrix characters on mobile for performance */
+    .matrix-chars {
+        opacity: 0.5;
+    }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+    .loader-overlay {
+        padding: 8px;
+    }
+
+    .terminal-window {
+        max-width: 280px;
+        min-width: 230px;
+        padding: 10px;
+    }
+
+    .terminal-content {
+        font-size: 10px;
+        min-height: 80px;
+    }
+
+    .terminal-title {
+        font-size: 9px;
+    }
+
+    .circular-loader {
+        width: 45px;
+        height: 45px;
+    }
+
+    .loading-text {
+        font-size: 13px;
+    }
+
+    .percentage {
+        font-size: 11px;
+    }
+
+    .boot-sequence {
+        font-size: 9px;
+        bottom: 10px;
+    }
+}
+
+/* Extra small phones */
+@media (max-width: 320px) {
+    .terminal-window {
+        max-width: 260px;
+        min-width: 220px;
+        padding: 8px;
+    }
+
+    .terminal-content {
+        font-size: 9px;
+    }
+
+    .loading-text {
+        font-size: 12px;
+    }
+
+    .circular-loader {
+        width: 40px;
+        height: 40px;
+    }
+
+    .percentage {
+        font-size: 10px;
+    }
+}
+
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .loader-container {
+        gap: 10px;
+    }
+
+    .terminal-window {
+        padding: 8px;
+    }
+
+    .terminal-content {
+        min-height: 60px;
+        font-size: 10px;
+    }
+
+    .circular-loader {
+        width: 40px;
+        height: 40px;
+    }
+
+    .boot-sequence {
+        bottom: 5px;
+        font-size: 9px;
+    }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .terminal-window {
+        border-width: 1px;
+    }
+
+    .terminal-content {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
