@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meeting Calendar | Juan Miguel Antonio</title>
+    <link rel="stylesheet" href="../assets/css/loader.css" />
     <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
@@ -12,7 +13,9 @@
 
     <header class="site-header">
         <div class="container nav-container">
-            <h1 class="logo">Juan Miguel Antonio</h1>
+            <a href="../index.html" class="logo-link">
+                <h1 class="logo">Personal Portfolio</h1>
+            </a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="../index.html">Home</a></li>
@@ -21,6 +24,11 @@
                     <li><a href="../contact.html">Contact</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
@@ -28,16 +36,25 @@
         <section class="project-detail">
             <h2>Meeting Calendar System</h2>
             <p>This team-based backend project is a calendar and scheduling app powered by Docker. It uses PostgreSQL
-                for structured meeting data and MongoDB for logs and user role management.</p>
+                for structured meeting data and MongoDB for logs and user role management, demonstrating a microservices
+                architecture approach.</p>
 
             <ul>
                 <li>✅ Used Docker to containerize PostgreSQL and MongoDB services</li>
                 <li>✅ Designed database models for meetings, users, and roles</li>
                 <li>✅ Handled user permissions and project relationships</li>
                 <li>✅ Implemented SQL joins and RESTful architecture</li>
+                <li>✅ Created scalable microservices with Docker Compose</li>
+                <li>✅ Applied database normalization and indexing strategies</li>
+                <li>✅ Integrated logging and monitoring systems</li>
             </ul>
 
-            <p>🔧 A solid introduction to DevOps tools and backend architecture.</p>
+            <p>🔧 A solid introduction to DevOps tools and backend architecture. This project showcases my ability to
+                work with containerized applications, multi-database systems, and modern deployment practices essential
+                for enterprise-level applications.</p>
+
+            <p><strong>Technologies Used:</strong> Docker, PostgreSQL, MongoDB, RESTful APIs, Database Design, DevOps,
+                Microservices Architecture</p>
         </section>
     </main>
 
@@ -46,6 +63,8 @@
             <p>&copy; 2025 Juan Miguel Antonio. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="../assets/js/loader.js"></script>
 
 </body>
 

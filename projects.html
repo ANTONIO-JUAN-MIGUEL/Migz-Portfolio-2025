@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects | Juan Miguel Antonio</title>
+    <link rel="stylesheet" href="assets/css/loader.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
@@ -12,7 +13,9 @@
 
     <header class="site-header">
         <div class="container nav-container">
-            <h1 class="logo">Personal Portfolio</h1>
+            <a href="index.html" class="logo-link">
+                <h1 class="logo">Personal Portfolio</h1>
+            </a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
@@ -21,11 +24,16 @@
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
     <main class="container fade-in">
-        <section class="projects-section"><br>
+        <section class="projects-section">
             <h2>My Projects</h2>
             <div class="project-grid-img">
 
@@ -33,28 +41,29 @@
                     <img src="assets/images/portfolio.png" alt="Personal Portfolio">
                     <h3>Personal Portfolio</h3>
                     <p>This is the website you're viewing now — designed from scratch using pure HTML and CSS.</p>
-                    <a href="ProjectPortfolios/personal-portfolio.html" class="btn">View Details</a>
+                    <a href="ProjectPortfolios/personal-portfolio.html" class="btn btn-ripple">View Details</a>
                 </div>
 
                 <div class="project-card-img">
                     <img src="assets/images/motorgear.png" alt="Motorcycle Shop">
                     <h3>Motorcycle & Gear Shop</h3>
                     <p>A responsive site showcasing gear and bikes built using HTML, CSS, JS.</p>
-                    <a href="ProjectPortfolios/motorcycle-shop.html" class="btn">View Details</a>
+                    <a href="ProjectPortfolios/motorcycle-shop.html" class="btn btn-ripple">View Details</a>
                 </div>
 
                 <div class="project-card-img">
                     <img src="assets/images/meeting.png" alt="Meeting Calendar">
                     <h3>Meeting Calendar System</h3>
                     <p>A Dockerized app with PostgreSQL and MongoDB for team scheduling and logs.</p>
-                    <a href="ProjectPortfolios/meeting-calendar.html" class="btn">View Details</a>
+                    <a href="ProjectPortfolios/meeting-calendar.html" class="btn btn-ripple">View Details</a>
                 </div>
 
                 <div class="project-card-img">
-                    <img src="assets/images/taskmanager.jpg" alt="Task Manager">
+                    <img src="assets/images/taskninja.png" alt="Task Manager">
                     <h3>Task Manager App</h3>
-                    <p>A command-line app that applies OOP for tracking tasks, priorities, and deadlines.</p>
-                    <a href="ProjectPortfolios/task-manager.html" class="btn">View Details</a>
+                    <p>A console-based app that applies OOP principles for tracking tasks, priorities, and deadlines
+                        using Python.</p>
+                    <a href="ProjectPortfolios/task-manager.html" class="btn btn-ripple">View Details</a>
                 </div>
 
             </div>
@@ -66,6 +75,9 @@
             <p>&copy; 2025 Juan Miguel Antonio. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/main.js"></script>
 
 </body>
 

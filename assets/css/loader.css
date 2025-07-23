@@ -1,0 +1,497 @@
+/* ========= HACKING THEME LOADER ========= */
+
+/* Main loader overlay */
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 25%, #000000 50%, #8b0000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 1;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Matrix-style background animation */
+.loader-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, #e74c3c, transparent),
+        radial-gradient(2px 2px at 40% 70%, #e74c3c, transparent),
+        radial-gradient(1px 1px at 90% 40%, #ff6b6b, transparent),
+        radial-gradient(1px 1px at 50% 50%, #c0392b, transparent);
+    background-size: 200px 200px;
+    animation: matrixRain 4s linear infinite;
+    opacity: 0.3;
+}
+
+@keyframes matrixRain {
+    0% {
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+    }
+
+    100% {
+        background-position: 0% 100%, 0% 100%, 0% 100%, 0% 100%;
+    }
+}
+
+/* Main loader container */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    z-index: 2;
+    position: relative;
+}
+
+/* Hacker terminal window */
+.terminal-window {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #e74c3c;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow:
+        0 0 20px rgba(231, 76, 60, 0.3),
+        inset 0 0 20px rgba(231, 76, 60, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Terminal header */
+.terminal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-button.close {
+    background: #ff5f56;
+}
+
+.terminal-button.minimize {
+    background: #ffbd2e;
+}
+
+.terminal-button.maximize {
+    background: #27ca3f;
+}
+
+.terminal-title {
+    color: #e74c3c;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    margin-left: auto;
+    font-weight: bold;
+}
+
+/* Terminal content */
+.terminal-content {
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    font-size: 14px;
+    line-height: 1.4;
+    min-height: 120px;
+}
+
+.terminal-line {
+    margin: 5px 0;
+    opacity: 0;
+    animation: typeWriter 0.5s ease-in-out forwards;
+}
+
+.terminal-line:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.terminal-line:nth-child(2) {
+    animation-delay: 1.2s;
+}
+
+.terminal-line:nth-child(3) {
+    animation-delay: 1.9s;
+}
+
+.terminal-line:nth-child(4) {
+    animation-delay: 2.6s;
+}
+
+.terminal-line:nth-child(5) {
+    animation-delay: 3.3s;
+}
+
+@keyframes typeWriter {
+    0% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.prompt {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.success {
+    color: #00ff00;
+}
+
+.warning {
+    color: #ffff00;
+}
+
+.error {
+    color: #ff0000;
+}
+
+/* Cursor blink animation */
+.cursor {
+    display: inline-block;
+    background-color: #00ff00;
+    width: 8px;
+    height: 14px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    50% {
+        opacity: 1;
+    }
+
+    51%,
+    100% {
+        opacity: 0;
+    }
+}
+
+/* Circular progress loader */
+.circular-loader {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.circular-loader svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.circular-loader circle {
+    fill: none;
+    stroke-width: 3;
+}
+
+.circular-loader .track {
+    stroke: rgba(231, 76, 60, 0.2);
+}
+
+.circular-loader .progress {
+    stroke: #e74c3c;
+    stroke-linecap: round;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+    animation: progressRing 4s ease-in-out infinite;
+}
+
+@keyframes progressRing {
+    0% {
+        stroke-dashoffset: 251.2;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -251.2;
+    }
+}
+
+/* Percentage counter */
+.percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+/* Loading text */
+.loading-text {
+    font-family: 'Courier New', monospace;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Matrix falling characters */
+.matrix-chars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.matrix-char {
+    position: absolute;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    color: #e74c3c;
+    opacity: 0.7;
+    animation: matrixFall linear infinite;
+}
+
+@keyframes matrixFall {
+    0% {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.7;
+    }
+
+    90% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Glitch effect */
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitch1 0.5s infinite;
+    color: #ff0000;
+    z-index: -2;
+}
+
+.glitch::after {
+    animation: glitch2 0.5s infinite;
+    color: #00ffff;
+    z-index: -1;
+}
+
+@keyframes glitch1 {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(-2px, 2px);
+    }
+
+    40% {
+        transform: translate(-2px, -2px);
+    }
+
+    60% {
+        transform: translate(2px, 2px);
+    }
+
+    80% {
+        transform: translate(2px, -2px);
+    }
+}
+
+@keyframes glitch2 {
+
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    20% {
+        transform: translate(2px, -2px);
+    }
+
+    40% {
+        transform: translate(2px, 2px);
+    }
+
+    60% {
+        transform: translate(-2px, -2px);
+    }
+
+    80% {
+        transform: translate(-2px, 2px);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .terminal-window {
+        width: 350px;
+        padding: 15px;
+    }
+
+    .terminal-content {
+        font-size: 12px;
+    }
+
+    .circular-loader {
+        width: 60px;
+        height: 60px;
+    }
+
+    .loading-text {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .terminal-window {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .terminal-content {
+        font-size: 11px;
+        min-height: 100px;
+    }
+
+    .circular-loader {
+        width: 50px;
+        height: 50px;
+    }
+
+    .loading-text {
+        font-size: 14px;
+    }
+
+    .percentage {
+        font-size: 14px;
+    }
+}
+
+/* Scanline effect */
+.scanline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+    animation: scanline 2s linear infinite;
+}
+
+@keyframes scanline {
+    0% {
+        top: 0;
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* Boot sequence text */
+.boot-sequence {
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: #00ff00;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: bootFadeIn 1s ease-in-out 3s forwards;
+}
+
+@keyframes bootFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}

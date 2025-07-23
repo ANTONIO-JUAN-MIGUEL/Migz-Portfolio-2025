@@ -5,14 +5,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Juan Miguel Antonio | Portfolio</title>
+    <link rel="stylesheet" href="assets/css/loader.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
 
     <header class="site-header">
         <div class="container nav-container">
-            <h1 class="logo">Personal Portfolio</h1>
+            <a href="index.html" class="logo-link">
+                <h1 class="logo">Personal Portfolio</h1>
+            </a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="index.html" class="active">Home</a></li>
@@ -34,9 +39,37 @@
         <div class="container hero-content">
             <div class="hero-text">
                 <h2 class="typing-animation">Turning Ideas Into Code</h2>
-                <p class="slide-up">Hi, I'm <span class="highlight">Juan Miguel Antonio</span> — a second-year Information Technology student at FEU Institute of
-                    Technology. I specialize in Web and Mobile Development and I'm passionate about building fast, modern,
+                <p class="slide-up">Hi, I'm <span class="highlight">Juan Miguel Antonio</span> — a second-year
+                    Information Technology student at FEU Institute of
+                    Technology. I specialize in Web and Mobile Development and I'm passionate about building fast,
+                    modern,
                     and accessible digital experiences.</p>
+
+                <!-- Social Media Links -->
+                <div class="social-media-section">
+                    <p class="social-intro">Connect with me:</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/Migzzz9" target="_blank" class="social-link facebook-link">
+                            <div class="social-icon-wrapper">
+                                <i class="fab fa-facebook-f"></i>
+                                <div class="social-ripple facebook-ripple"></div>
+                            </div>
+                            <span class="social-text">Migz Antonio</span>
+                            <div class="social-particles"></div>
+                        </a>
+
+                        <a href="https://www.instagram.com/migz.madman/" target="_blank"
+                            class="social-link instagram-link">
+                            <div class="social-icon-wrapper">
+                                <i class="fab fa-instagram"></i>
+                                <div class="social-ripple instagram-ripple"></div>
+                            </div>
+                            <span class="social-text">migz.madman</span>
+                            <div class="social-particles"></div>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="hero-buttons">
                     <a href="projects.html" class="btn primary-btn pulse">Explore My Work</a>
                     <a href="contact.html" class="btn secondary-btn">Get In Touch</a>
@@ -58,8 +91,28 @@
     <footer class="site-footer">
         <div class="container">
             <p>&copy; 2025 Juan Miguel Antonio. All rights reserved.</p>
+
+            <!-- Footer Social Links -->
+            <div class="footer-social">
+                <div class="footer-social-divider"></div>
+                <div class="footer-social-links">
+                    <a href="https://www.facebook.com/Migzzz9" target="_blank"
+                        class="footer-social-link facebook-footer">
+                        <i class="fab fa-facebook-f"></i>
+                        <span>Facebook</span>
+                    </a>
+                    <a href="https://www.instagram.com/migz.madman/" target="_blank"
+                        class="footer-social-link instagram-footer">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script src="assets/js/loader.js"></script>
+    <script src="assets/js/social-effects.js"></script>
 
 </body>
 
