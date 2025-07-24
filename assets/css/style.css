@@ -1786,3 +1786,282 @@ ul {
         font-size: 1.1rem;
     }
 }
+
+/* ========= APP GALLERY STYLES ========= */
+.app-gallery {
+    margin: 40px 0 50px 0;
+    padding: 30px 0;
+    border-top: 2px solid rgba(231, 76, 60, 0.2);
+    border-bottom: 2px solid rgba(231, 76, 60, 0.2);
+}
+
+.app-gallery h3 {
+    font-size: 1.8rem;
+    color: #e74c3c;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+    position: relative;
+}
+
+.app-gallery h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+    border-radius: 2px;
+}
+
+.screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.screenshot-item {
+    background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 4px solid #e74c3c;
+    position: relative;
+    overflow: hidden;
+}
+
+.screenshot-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.screenshot-item:hover::before {
+    left: 100%;
+}
+
+.screenshot-item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(231, 76, 60, 0.25);
+    border-left-width: 6px;
+}
+
+.screenshot-item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(231, 76, 60, 0.2);
+}
+
+.screenshot-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(231, 76, 60, 0.2);
+    border-color: rgba(231, 76, 60, 0.4);
+}
+
+.screenshot-caption h4 {
+    color: #e74c3c;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.screenshot-caption p {
+    color: #bbb;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+    transition: color 0.3s ease;
+}
+
+.screenshot-item:hover .screenshot-caption p {
+    color: #ddd;
+}
+
+/* Mobile phone mockup effect for screenshots */
+.screenshot-item img {
+    border-radius: 20px;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 8px #2a2a2a,
+        0 0 0 10px rgba(231, 76, 60, 0.3);
+}
+
+.screenshot-item:hover img {
+    box-shadow:
+        0 12px 25px rgba(231, 76, 60, 0.2),
+        0 0 0 8px #2a2a2a,
+        0 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+/* ===== MOBILE RESPONSIVE FOR APP GALLERY ===== */
+
+/* Tablets */
+@media (max-width: 768px) {
+    .app-gallery {
+        margin: 30px 0 40px 0;
+        padding: 25px 0;
+    }
+
+    .app-gallery h3 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .screenshot-item {
+        padding: 18px;
+    }
+
+    .screenshot-item img {
+        max-width: 180px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 1rem;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.85rem;
+    }
+}
+
+/* Large phones */
+@media (max-width: 480px) {
+    .app-gallery {
+        margin: 25px 0 35px 0;
+        padding: 20px 0;
+    }
+
+    .app-gallery h3 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .screenshot-item {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .screenshot-item img {
+        max-width: 160px;
+        margin-bottom: 12px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+    .app-gallery h3 {
+        font-size: 1.3rem;
+    }
+
+    .screenshot-item {
+        padding: 14px;
+    }
+
+    .screenshot-item img {
+        max-width: 140px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 0.9rem;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.75rem;
+    }
+}
+
+/* Two-column layout for larger screens */
+@media (min-width: 1200px) {
+    .screenshot-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .screenshot-item img {
+        max-width: 220px;
+    }
+}
+
+/* Add lightbox effect on click (optional enhancement) */
+.screenshot-item img:hover {
+    cursor: pointer;
+}
+
+/* Loading animation for images */
+.screenshot-item img {
+    opacity: 0;
+    animation: imageLoad 0.8s ease-out forwards;
+}
+
+.screenshot-item:nth-child(1) img {
+    animation-delay: 0.1s;
+}
+
+.screenshot-item:nth-child(2) img {
+    animation-delay: 0.2s;
+}
+
+.screenshot-item:nth-child(3) img {
+    animation-delay: 0.3s;
+}
+
+.screenshot-item:nth-child(4) img {
+    animation-delay: 0.4s;
+}
+
+@keyframes imageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Hover glow effect for the gallery section */
+.app-gallery:hover {
+    background: linear-gradient(145deg, rgba(231, 76, 60, 0.02), rgba(231, 76, 60, 0.05));
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
