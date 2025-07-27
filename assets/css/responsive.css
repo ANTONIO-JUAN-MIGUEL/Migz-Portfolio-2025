@@ -41,10 +41,34 @@
 
 /* Standard tablets */
 @media (max-width: 968px) {
+
+    /* CRITICAL FIX: Much more padding to prevent navbar overlap */
+    .hero {
+        padding: 160px 0 60px !important;
+        min-height: calc(100vh - 80px);
+    }
+
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 40px;
+        grid-template-areas:
+            "visual"
+            "text";
+        padding-top: 40px !important;
+        /* Extra top padding */
+    }
+
+    .hero-text {
+        grid-area: text;
+        order: 2;
+    }
+
+    .hero-visual {
+        grid-area: visual;
+        order: 1;
+        margin-top: 0;
+        padding-top: 0;
     }
 
     .hero-text h2 {
@@ -52,16 +76,18 @@
     }
 
     .floating-elements {
-        width: 250px;
-        height: 250px;
+        width: 300px;
+        height: 300px;
     }
 
     .profile-photo-container {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        margin: 0 auto;
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 20px auto 30px auto !important;
+        display: flex;
+        justify-content: center;
     }
 
     .profile-photo-wrapper {
@@ -74,16 +100,90 @@
         height: 200px;
     }
 
+    .profile-photo-border {
+        width: 220px;
+        height: 220px;
+    }
+
+    .profile-photo-glow {
+        width: 260px;
+        height: 260px;
+    }
+
     .container {
         width: 95%;
     }
 
+    /* Mobile menu styles */
     .nav-links {
         display: none;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(20, 20, 20, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        gap: 30px;
+        z-index: 999;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-links.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 15px 30px;
+        border-radius: 10px;
+        width: 80%;
+        text-align: center;
+        background: rgba(231, 76, 60, 0.1);
+        border: 2px solid rgba(231, 76, 60, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links .active {
+        background: rgba(231, 76, 60, 0.2);
+        border-color: #e74c3c;
+        transform: scale(1.05);
     }
 
     .mobile-menu-toggle {
         display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        gap: 4px;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+
+    .mobile-menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: #e74c3c;
+        transition: all 0.3s ease;
+        border-radius: 2px;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
     }
 
     .social-links {
@@ -107,8 +207,39 @@
 /* Portrait tablets and large phones */
 @media (max-width: 768px) {
     .hero {
-        padding: 100px 0 60px;
-        min-height: auto;
+        padding: 150px 0 60px !important;
+        /* Increased padding for mobile */
+        min-height: calc(100vh - 60px);
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        padding-top: 30px !important;
+        /* Extra spacing */
+    }
+
+    .hero-visual {
+        order: 1;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+
+    .hero-text {
+        order: 2;
+    }
+
+    .profile-photo-container {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 10px auto 30px auto !important;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        overflow: visible;
     }
 
     .hero-text h2 {
@@ -160,7 +291,8 @@
     .contact-section,
     .projects-section,
     .about-section {
-        padding: 100px 0 30px;
+        padding: 150px 0 30px !important;
+        /* Matching hero padding */
     }
 
     .contact-section h2,
@@ -200,8 +332,9 @@
     }
 
     .floating-elements {
-        width: 200px;
-        height: 200px;
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
     }
 
     .floating-element {
@@ -210,30 +343,82 @@
     }
 
     .profile-photo-wrapper {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 220px;
     }
 
     .profile-photo {
-        width: 160px;
-        height: 160px;
-    }
-
-    .profile-photo-border {
         width: 180px;
         height: 180px;
     }
 
+    .profile-photo-border {
+        width: 200px;
+        height: 200px;
+    }
+
     .profile-photo-glow {
-        width: 220px;
-        height: 220px;
+        width: 240px;
+        height: 240px;
+    }
+
+    /* App Gallery Mobile Responsiveness */
+    .app-gallery {
+        margin: 30px 0 40px 0;
+        padding: 25px 0;
+    }
+
+    .app-gallery h3 {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+
+    .screenshot-item {
+        padding: 18px;
+    }
+
+    .screenshot-item img {
+        max-width: 180px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 1rem;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.85rem;
     }
 }
 
 /* Landscape phones and smaller devices */
 @media (max-width: 480px) {
     .hero {
-        padding: 80px 0 50px;
+        padding: 140px 0 50px !important;
+        /* Even more padding for small screens */
+        min-height: calc(100vh - 80px);
+    }
+
+    .hero-content {
+        padding-top: 20px !important;
+        /* Extra spacing */
+    }
+
+    .profile-photo-container {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto 25px auto !important;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 280px;
+        overflow: visible;
     }
 
     .hero-text h2 {
@@ -248,6 +433,7 @@
 
     .container {
         width: 95%;
+        padding: 0 10px;
     }
 
     .site-header {
@@ -260,6 +446,13 @@
 
     .nav-links {
         gap: 15px;
+        top: 70px;
+        height: calc(100vh - 70px);
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+        padding: 12px 25px;
     }
 
     .social-links {
@@ -314,6 +507,13 @@
         font-size: 1.8rem;
     }
 
+    .contact-section,
+    .projects-section,
+    .about-section {
+        padding: 140px 0 30px !important;
+        /* Matching hero padding */
+    }
+
     .contact-form input,
     .contact-form textarea {
         padding: 12px;
@@ -335,6 +535,7 @@
     }
 
     .screenshot-grid {
+        grid-template-columns: 1fr;
         gap: 15px;
     }
 
@@ -343,12 +544,14 @@
     }
 
     .screenshot-item img {
-        max-width: 150px;
+        max-width: 160px;
+        margin-bottom: 12px;
     }
 
     .floating-elements {
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
+        margin: 0 auto;
     }
 
     .floating-element {
@@ -357,23 +560,31 @@
     }
 
     .profile-photo-wrapper {
-        width: 180px;
-        height: 180px;
+        width: 200px;
+        height: 200px;
     }
 
     .profile-photo {
-        width: 140px;
-        height: 140px;
-    }
-
-    .profile-photo-border {
         width: 160px;
         height: 160px;
     }
 
+    .profile-photo-border {
+        width: 180px;
+        height: 180px;
+    }
+
     .profile-photo-glow {
-        width: 200px;
-        height: 200px;
+        width: 220px;
+        height: 220px;
+    }
+
+    .profile-photo-wrapper::before {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
     }
 
     .projects-github-section {
@@ -414,14 +625,40 @@
         gap: 12px;
     }
 
+    /* App Gallery Mobile */
     .app-gallery {
-        margin: 30px 0 40px 0;
+        margin: 25px 0 35px 0;
         padding: 20px 0;
     }
 
     .app-gallery h3 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         margin-bottom: 20px;
+    }
+
+    .screenshot-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .screenshot-item {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .screenshot-item img {
+        max-width: 160px;
+        margin-bottom: 12px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.8rem;
+        line-height: 1.4;
     }
 
     .about-section p {
@@ -432,12 +669,35 @@
 
 /* Very small devices */
 @media (max-width: 360px) {
+    .hero {
+        padding: 130px 0 40px !important;
+        /* Maximum padding for tiny screens */
+    }
+
+    .hero-content {
+        padding-top: 15px !important;
+    }
+
+    .profile-photo-container {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: none !important;
+        margin: 0 auto 20px auto !important;
+        max-width: 240px;
+    }
+
     .hero-text h2 {
         font-size: 1.8rem;
     }
 
     .hero-text p {
         font-size: 0.85rem;
+    }
+
+    .container {
+        width: 95%;
+        padding: 0 8px;
     }
 
     .social-link {
@@ -461,23 +721,48 @@
         font-size: 1.6rem;
     }
 
+    .contact-section,
+    .projects-section,
+    .about-section {
+        padding: 130px 0 30px !important;
+        /* Matching hero padding */
+    }
+
     .contact-method {
         padding: 15px;
     }
 
     .profile-photo-wrapper {
-        width: 160px;
-        height: 160px;
+        width: 180px;
+        height: 180px;
     }
 
     .profile-photo {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
+    }
+
+    .profile-photo-border {
+        width: 160px;
+        height: 160px;
+    }
+
+    .profile-photo-glow {
+        width: 200px;
+        height: 200px;
+    }
+
+    .profile-photo-wrapper::before {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        bottom: 10px;
+        right: 10px;
     }
 
     .floating-elements {
-        width: 160px;
-        height: 160px;
+        width: 200px;
+        height: 200px;
     }
 
     .floating-element {
@@ -490,17 +775,40 @@
         padding: 8px 12px;
         font-size: 0.75rem;
     }
+
+    /* App Gallery Extra Small */
+    .app-gallery h3 {
+        font-size: 1.3rem;
+    }
+
+    .screenshot-item {
+        padding: 14px;
+    }
+
+    .screenshot-item img {
+        max-width: 140px;
+    }
+
+    .screenshot-caption h4 {
+        font-size: 0.9rem;
+    }
+
+    .screenshot-caption p {
+        font-size: 0.75rem;
+    }
 }
 
-/* Landscape orientation */
+/* Landscape orientation - special handling for short screens */
 @media (max-height: 600px) and (orientation: landscape) {
     .hero {
-        padding: 60px 0 40px;
+        padding: 100px 0 40px !important;
+        /* Reduced for landscape */
         min-height: auto;
     }
 
     .hero-content {
-        gap: 30px;
+        gap: 20px;
+        padding-top: 20px !important;
     }
 
     .hero-text h2 {
@@ -511,6 +819,10 @@
     .hero-text p {
         font-size: 0.9rem;
         margin-bottom: 20px;
+    }
+
+    .profile-photo-container {
+        margin: 5px auto 10px auto !important;
     }
 
     .profile-photo-wrapper {
@@ -524,8 +836,8 @@
     }
 
     .floating-elements {
-        width: 140px;
-        height: 140px;
+        width: 180px;
+        height: 180px;
     }
 
     .social-links {
@@ -595,6 +907,31 @@
     .nav-links a {
         min-height: 44px;
         min-width: 44px;
+    }
+}
+
+/* Container overflow fix for mobile */
+@media (max-width: 480px) {
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        position: relative;
+    }
+
+    .hero-content {
+        overflow: visible;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    body {
+        overflow-x: hidden;
     }
 }
 
