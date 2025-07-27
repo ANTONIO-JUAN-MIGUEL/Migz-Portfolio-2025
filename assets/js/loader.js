@@ -1,3 +1,4 @@
+/* filepath: c:\Users\Migz Antonio\Desktop\portfolio\Migz-Portfolio-2025\assets\js\loader.js */
 // Hacking theme loader functionality
 document.addEventListener('DOMContentLoaded', function () {
     // Create loader HTML
@@ -54,15 +55,20 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Hide loader after everything is loaded
     window.addEventListener('load', function () {
-        setTimeout(hideLoader, 1000); // Additional delay for effect
+        setTimeout(hideLoader, 2000); // Show loader for 2 seconds
     });
+
+    // Fallback: Hide loader after 4 seconds maximum
+    setTimeout(hideLoader, 4000);
 });
 
 // Create falling matrix characters
 function createMatrixChars() {
     const matrixContainer = document.getElementById('matrixChars');
+    if (!matrixContainer) return;
+
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz<>{}[]()#$%^&*';
-    const numChars = 50;
+    const numChars = window.innerWidth < 768 ? 25 : 50; // Fewer on mobile
 
     for (let i = 0; i < numChars; i++) {
         const char = document.createElement('div');
@@ -86,7 +92,9 @@ function createMatrixChars() {
                 newChar.style.left = Math.random() * 100 + '%';
                 newChar.style.animationDuration = (Math.random() * 3 + 2) + 's';
                 newChar.style.fontSize = (Math.random() * 10 + 10) + 'px';
-                matrixContainer.appendChild(newChar);
+                if (matrixContainer) {
+                    matrixContainer.appendChild(newChar);
+                }
             }
         }, (Math.random() * 5000 + 3000));
     }
@@ -95,43 +103,20 @@ function createMatrixChars() {
 // Simulate loading progress
 function simulateLoading() {
     const percentageElement = document.getElementById('percentage');
+    if (!percentageElement) return;
+
     let progress = 0;
 
-    const loadingSteps = [
-        { percent: 15, delay: 300 },
-        { percent: 35, delay: 500 },
-        { percent: 55, delay: 400 },
-        { percent: 78, delay: 300 },
-        { percent: 90, delay: 200 },
-        { percent: 100, delay: 400 }
-    ];
+    const interval = setInterval(() => {
+        progress += Math.random() * 15 + 5;
+        if (progress > 100) progress = 100;
 
-    function updateProgress(targetPercent, delay) {
-        return new Promise(resolve => {
-            const increment = (targetPercent - progress) / 10;
-            const interval = setInterval(() => {
-                progress += increment;
-                if (progress >= targetPercent) {
-                    progress = targetPercent;
-                    percentageElement.textContent = Math.round(progress) + '%';
-                    clearInterval(interval);
-                    resolve();
-                } else {
-                    percentageElement.textContent = Math.round(progress) + '%';
-                }
-            }, delay / 10);
-        });
-    }
+        percentageElement.textContent = Math.round(progress) + '%';
 
-    // Execute loading steps
-    async function runLoadingSequence() {
-        for (const step of loadingSteps) {
-            await updateProgress(step.percent, step.delay);
-            await new Promise(resolve => setTimeout(resolve, 200));
+        if (progress >= 100) {
+            clearInterval(interval);
         }
-    }
-
-    runLoadingSequence();
+    }, 200);
 }
 
 // Hide loader
@@ -139,10 +124,11 @@ function hideLoader() {
     const loader = document.getElementById('loader');
     if (loader) {
         loader.classList.add('hidden');
-
-        // Remove loader from DOM after transition
+        // Remove loader from DOM after animation
         setTimeout(() => {
-            loader.remove();
+            if (loader.parentNode) {
+                loader.remove();
+            }
         }, 500);
     }
 }

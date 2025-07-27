@@ -1,11 +1,14 @@
-/* ========= PROFESSIONAL PROFILE PHOTO STYLES ========= */
+/* ========= PROFILE PHOTO STYLES ========= */
 
+/* Main profile photo container positioning */
 .profile-photo-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 5;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    z-index: 3;
 }
 
 .profile-photo-wrapper {
@@ -13,24 +16,26 @@
     width: 280px;
     height: 280px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    z-index: 2;
+    /* REDUCED: Lower than floating elements */
 }
 
+/* Main profile photo styling */
 .profile-photo {
     width: 240px;
     height: 240px;
     border-radius: 50%;
     object-fit: cover;
-    object-position: center;
-    position: relative;
-    z-index: 3;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     box-shadow:
-        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(231, 76, 60, 0.15),
         0 0 0 8px rgba(231, 76, 60, 0.1),
         0 0 0 16px rgba(31, 31, 31, 0.8);
     animation: profileFloat 6s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+    /* REDUCED: Lower than floating elements */
 }
 
 .profile-photo:hover {
@@ -58,7 +63,8 @@
     -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: source-out;
     animation: rotateBorder 8s linear infinite;
-    z-index: 2;
+    z-index: 1;
+    /* REDUCED: Behind everything */
 }
 
 /* Pulsing glow effect */
@@ -72,7 +78,8 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(231, 76, 60, 0.2) 0%, transparent 70%);
     animation: pulseGlow 4s ease-in-out infinite;
-    z-index: 1;
+    z-index: 0;
+    /* REDUCED: Behind everything */
 }
 
 /* Animations */
@@ -112,11 +119,19 @@
     }
 }
 
-/* Floating elements repositioning */
+/* ========= FLOATING ELEMENTS - REPOSITIONED ========= */
 .floating-elements {
-    position: relative;
-    width: 400px;
-    height: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    /* INCREASED: Larger container for better spacing */
+    height: 500px;
+    /* INCREASED: Larger container for better spacing */
+    pointer-events: none;
+    z-index: 5;
+    /* INCREASED: Higher than photo */
 }
 
 .floating-element {
@@ -124,12 +139,15 @@
     font-size: 2rem;
     padding: 20px;
     background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
     border: 2px solid rgba(231, 76, 60, 0.3);
     border-radius: 15px;
     backdrop-filter: blur(10px);
-    animation: float 6s ease-in-out infinite;
-    z-index: 1;
+    z-index: 5;
+    /* INCREASED: Higher than photo */
     transition: all 0.3s ease;
+    cursor: pointer;
+    pointer-events: auto;
 }
 
 .floating-element:hover {
@@ -137,27 +155,76 @@
     background: rgba(231, 76, 60, 0.2);
     border-color: rgba(231, 76, 60, 0.5);
     box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+    z-index: 6;
+    /* EXTRA HIGH on hover */
 }
 
+/* Individual floating element positioning - ADJUSTED MOBILE ELEMENT */
 .floating-element.code-block {
-    top: 20px;
-    left: 20px;
-    animation-delay: 0s;
+    top: 10px;
+    left: 10px;
     font-family: 'Courier New', monospace;
     color: #e74c3c;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: 0s;
 }
 
 .floating-element.design-element {
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
+    animation: float 6s ease-in-out infinite;
     animation-delay: 2s;
 }
 
 .floating-element.mobile-element {
-    bottom: 20px;
+    top: 350px;
+    /* ADJUSTED: Brought back up from 420px */
     left: 50%;
     transform: translateX(-50%);
+    animation: floatMobile 6s ease-in-out infinite;
     animation-delay: 4s;
+}
+
+/* Floating animation - STANDARD */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+
+    50% {
+        transform: translateY(-10px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translateY(-20px) rotate(1deg);
+    }
+}
+
+/* SPECIAL ANIMATION FOR MOBILE ELEMENT - FIXED */
+@keyframes floatMobile {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0px) rotate(0deg);
+    }
+
+    25% {
+        transform: translateX(-50%) translateY(-15px) rotate(2deg);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-10px) rotate(-1deg);
+    }
+
+    75% {
+        transform: translateX(-50%) translateY(-20px) rotate(1deg);
+    }
 }
 
 /* Professional status indicator */
@@ -175,6 +242,7 @@
     justify-content: center;
     font-size: 1.5rem;
     z-index: 4;
+    /* INCREASED: Higher than photo but lower than floating elements */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     animation: statusPulse 3s ease-in-out infinite;
 }
@@ -188,5 +256,117 @@
 
     50% {
         transform: scale(1.1);
+    }
+}
+
+/* Mobile responsiveness for floating elements - ADJUSTED SPACING */
+@media (max-width: 968px) {
+    .floating-elements {
+        width: 380px;
+        height: 420px;
+        /* SLIGHTLY REDUCED HEIGHT */
+        z-index: 5;
+    }
+
+    .floating-element {
+        font-size: 1.5rem;
+        padding: 15px;
+        z-index: 5;
+    }
+
+    .floating-element.code-block {
+        top: 5px;
+        left: 5px;
+    }
+
+    .floating-element.design-element {
+        top: 5px;
+        right: 5px;
+    }
+
+    .floating-element.mobile-element {
+        top: 280px;
+        /* ADJUSTED: Brought back up from 320px */
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-elements {
+        width: 320px;
+        height: 370px;
+        /* SLIGHTLY REDUCED HEIGHT */
+        z-index: 5;
+    }
+
+    .floating-element {
+        font-size: 1.3rem;
+        padding: 12px;
+        z-index: 5;
+    }
+
+    .floating-element.code-block {
+        top: 0px;
+        left: 0px;
+    }
+
+    .floating-element.design-element {
+        top: 0px;
+        right: 0px;
+    }
+
+    .floating-element.mobile-element {
+        top: 240px;
+        /* ADJUSTED: Brought back up from 280px */
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-elements {
+        width: 280px;
+        height: 320px;
+        /* SLIGHTLY REDUCED HEIGHT */
+        z-index: 5;
+    }
+
+    .floating-element {
+        font-size: 1.1rem;
+        padding: 10px;
+        z-index: 5;
+    }
+
+    .floating-element.mobile-element {
+        top: 210px;
+        /* ADJUSTED: Brought back up from 250px */
+    }
+}
+
+@media (max-width: 360px) {
+    .floating-elements {
+        width: 250px;
+        height: 290px;
+        /* SLIGHTLY REDUCED HEIGHT */
+        z-index: 5;
+    }
+
+    .floating-element {
+        font-size: 1rem;
+        padding: 8px;
+        z-index: 5;
+    }
+
+    .floating-element.mobile-element {
+        top: 190px;
+        /* ADJUSTED: Brought back up from 220px */
+    }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .profile-photo,
+    .profile-photo-border,
+    .profile-photo-glow,
+    .floating-element {
+        animation: none !important;
     }
 }
