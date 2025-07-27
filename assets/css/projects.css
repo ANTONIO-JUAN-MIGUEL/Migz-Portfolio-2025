@@ -1,0 +1,342 @@
+/* ========= PROJECTS SECTION ========= */
+.projects-section {
+    padding: 120px 0 40px;
+}
+
+.projects-section h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 700;
+}
+
+/* ========= PROJECT GRIDS ========= */
+.project-grid-img {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.project-card-img {
+    background: rgba(31, 31, 31, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    border-left: 4px solid #e74c3c;
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.project-card-img:hover::before {
+    left: 100%;
+}
+
+.project-card-img:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.3);
+    border-left-width: 6px;
+}
+
+.project-card-img img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.project-card-img:hover img {
+    transform: scale(1.05);
+}
+
+/* ========= PROJECT CARD BUTTONS ========= */
+.project-card-img .btn {
+    display: inline-block;
+    padding: 14px 35px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Shimmer effect */
+.project-card-img .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.6s;
+    z-index: -1;
+}
+
+.project-card-img .btn:hover::before {
+    left: 100%;
+}
+
+/* Arrow indicator */
+.project-card-img .btn::after {
+    content: '→';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) translateX(25px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Hover effects */
+.project-card-img .btn:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(231, 76, 60, 0.4);
+    background: linear-gradient(135deg, #ff6b6b, #e74c3c);
+    padding-right: 50px;
+}
+
+.project-card-img .btn:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Active/Click effect */
+.project-card-img .btn:active {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(231, 76, 60, 0.3);
+    transition: all 0.1s ease;
+}
+
+/* Pulse animation on page load */
+.project-card-img .btn.animate-pulse {
+    animation: buttonPulse 2s infinite;
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 8px 25px rgba(231, 76, 60, 0.6), 0 0 0 15px rgba(231, 76, 60, 0);
+    }
+
+    100% {
+        box-shadow: 0 8px 25px rgba(231, 76, 60, 0.3);
+    }
+}
+
+/* Enhanced project card styling */
+.project-card-img h3 {
+    font-size: 1.4rem;
+    color: #e74c3c;
+    margin: 15px 0 12px 0;
+    font-weight: 600;
+    background: linear-gradient(135deg, #e74c3c, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.project-card-img:hover h3 {
+    transform: translateY(-3px);
+    filter: drop-shadow(0 3px 6px rgba(231, 76, 60, 0.3));
+}
+
+.project-card-img h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+    transition: width 0.3s ease;
+}
+
+.project-card-img:hover h3::after {
+    width: 100%;
+}
+
+.project-card-img p {
+    color: #bbb;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+
+.project-card-img:hover p {
+    color: #ddd;
+}
+
+/* Ripple effect on click */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-ripple .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    animation: ripple 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Breathing animation for special buttons */
+.btn-breathe {
+    animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* ========= PROJECT DETAIL SECTIONS ========= */
+.project-detail {
+    padding: 100px 0 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.project-detail h2 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, #e74c3c 0%, #ff6b6b 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.project-detail p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.project-detail ul {
+    margin: 30px 0;
+    padding-left: 0;
+}
+
+.project-detail ul li {
+    background: linear-gradient(145deg, #1f1f1f, #2a2a2a);
+    margin: 15px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid #e74c3c;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-detail ul li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(231, 76, 60, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.project-detail ul li:hover::before {
+    left: 100%;
+}
+
+.project-detail ul li:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);
+    border-left-width: 6px;
+}
+
+.project-detail a {
+    color: #e74c3c;
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.project-detail a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+    transition: width 0.3s ease;
+}
+
+.project-detail a:hover::after {
+    width: 100%;
+}
+
+.project-detail a:hover {
+    color: #ff6b6b;
+}

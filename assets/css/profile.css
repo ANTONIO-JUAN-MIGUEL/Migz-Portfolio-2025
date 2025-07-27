@@ -1,0 +1,192 @@
+/* ========= PROFESSIONAL PROFILE PHOTO STYLES ========= */
+
+.profile-photo-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+}
+
+.profile-photo-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-photo {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+    z-index: 3;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 8px rgba(231, 76, 60, 0.1),
+        0 0 0 16px rgba(31, 31, 31, 0.8);
+    animation: profileFloat 6s ease-in-out infinite;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 25px 50px rgba(231, 76, 60, 0.2),
+        0 0 0 8px rgba(231, 76, 60, 0.2),
+        0 0 0 16px rgba(31, 31, 31, 0.9),
+        0 0 60px rgba(231, 76, 60, 0.3);
+}
+
+/* Animated border ring */
+.profile-photo-border {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 260px;
+    height: 260px;
+    border: 3px solid transparent;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #e74c3c, #ff6b6b, #e74c3c) border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: source-out;
+    animation: rotateBorder 8s linear infinite;
+    z-index: 2;
+}
+
+/* Pulsing glow effect */
+.profile-photo-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(231, 76, 60, 0.2) 0%, transparent 70%);
+    animation: pulseGlow 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Animations */
+@keyframes profileFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes rotateBorder {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 0.3;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+/* Floating elements repositioning */
+.floating-elements {
+    position: relative;
+    width: 400px;
+    height: 400px;
+}
+
+.floating-element {
+    position: absolute;
+    font-size: 2rem;
+    padding: 20px;
+    background: rgba(231, 76, 60, 0.1);
+    border: 2px solid rgba(231, 76, 60, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    animation: float 6s ease-in-out infinite;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.floating-element:hover {
+    transform: scale(1.1);
+    background: rgba(231, 76, 60, 0.2);
+    border-color: rgba(231, 76, 60, 0.5);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.floating-element.code-block {
+    top: 20px;
+    left: 20px;
+    animation-delay: 0s;
+    font-family: 'Courier New', monospace;
+    color: #e74c3c;
+}
+
+.floating-element.design-element {
+    top: 20px;
+    right: 20px;
+    animation-delay: 2s;
+}
+
+.floating-element.mobile-element {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 4s;
+}
+
+/* Professional status indicator */
+.profile-photo-wrapper::before {
+    content: '💼';
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    z-index: 4;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: statusPulse 3s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}

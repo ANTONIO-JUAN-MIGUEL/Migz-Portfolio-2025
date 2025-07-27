@@ -1,0 +1,112 @@
+/* ========= HEADER / NAVBAR ========= */
+.site-header {
+    background: rgba(20, 20, 20, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 0;
+    border-bottom: 2px solid #e74c3c;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.site-header.scrolled {
+    padding: 15px 0;
+    background: rgba(20, 20, 20, 0.98);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 2rem;
+    color: #e74c3c;
+    font-weight: 700;
+    margin-left: -10px;
+    background: linear-gradient(45deg, #e74c3c, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: logoGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlow {
+    from {
+        filter: drop-shadow(0 0 5px rgba(231, 76, 60, 0.3));
+    }
+
+    to {
+        filter: drop-shadow(0 0 15px rgba(231, 76, 60, 0.6));
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #f4f4f4;
+    font-weight: 500;
+    position: relative;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+    border-radius: 20px;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #e74c3c, #ff6b6b);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::before,
+.nav-links .active::before {
+    width: 100%;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    color: #e74c3c;
+    background: rgba(231, 76, 60, 0.1);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 4px;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #e74c3c;
+    transition: all 0.3s ease;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo-link:hover .logo {
+    color: #e74c3c;
+    text-shadow: 0 0 10px rgba(231, 76, 60, 0.3);
+}

@@ -5,8 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Juan Miguel Antonio</title>
+
+    <!-- CSS Files -->
     <link rel="stylesheet" href="assets/css/loader.css" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/header.css" />
+    <link rel="stylesheet" href="assets/css/buttons.css" />
+    <link rel="stylesheet" href="assets/css/contact.css" />
+    <link rel="stylesheet" href="assets/css/social.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" />
+
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- Font Awesome for social icons -->
@@ -39,6 +48,18 @@
     <main class="container fade-in">
         <section class="contact-section">
             <h2>Contact Me</h2>
+
+            <!-- Professional Contact Photo -->
+            <div class="contact-photo-container">
+                <div class="contact-photo-wrapper">
+                    <img src="assets/images/home.jpg" alt="Juan Miguel Antonio - Contact Photo" class="contact-photo">
+                    <div class="contact-photo-border"></div>
+                    <div class="contact-availability-badge">
+                        <i class="fas fa-circle"></i>
+                        <span>Available</span>
+                    </div>
+                </div>
+            </div>
 
             <div id="status-message"></div>
 
@@ -119,111 +140,11 @@
     <footer class="site-footer">
         <div class="container">
             <p>&copy; 2025 Juan Miguel Antonio. All rights reserved.</p>
-
-            <!-- Footer Social Links -->
-            <div class="footer-social">
-                <div class="footer-social-divider"></div>
-                <div class="footer-social-links">
-                    <a href="https://www.facebook.com/Migzzz9" target="_blank"
-                        class="footer-social-link facebook-footer">
-                        <i class="fab fa-facebook-f"></i>
-                        <span>Facebook</span>
-                    </a>
-                    <a href="https://www.instagram.com/migz.madman/" target="_blank"
-                        class="footer-social-link instagram-footer">
-                        <i class="fab fa-instagram"></i>
-                        <span>Instagram</span>
-                    </a>
-                </div>
-            </div>
         </div>
     </footer>
 
     <script src="assets/js/loader.js"></script>
-    <script>
-        // Initialize EmailJS with your Public Key
-        emailjs.init("i0KPr_yvOrIdOHRDV");
-
-        // Form submission handling
-        document.getElementById('contact-form').addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const statusDiv = document.getElementById('status-message');
-            const formData = new FormData(this);
-
-            // Validate form data
-            const name = formData.get('from_name').trim();
-            const email = formData.get('from_email').trim();
-            const message = formData.get('message').trim();
-
-            if (!name || !email || !message) {
-                statusDiv.innerHTML = '<div style="color: #f44336; background: rgba(244, 67, 54, 0.1); padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; border-left: 4px solid #f44336;">❌ Please fill in all required fields.</div>';
-                return;
-            }
-
-            // Clear any previous status messages
-            statusDiv.innerHTML = '';
-
-            // Update button state
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            // Create template parameters with additional info
-            const templateParams = {
-                from_name: name,
-                from_email: email,
-                message: message,
-                to_email: 'fizzwick8341@gmail.com',
-                reply_to: email,
-                timestamp: new Date().toLocaleString()
-            };
-
-            // Send email using EmailJS
-            emailjs.send('service_emailMigz', 'template_lr7yqly', templateParams)
-                .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    statusDiv.innerHTML = '<div style="color: #4CAF50; background: rgba(76, 175, 80, 0.1); padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; border-left: 4px solid #4CAF50;">✅ Message sent successfully! Thank you for reaching out, ' + name + '. I\'ll get back to you soon.</div>';
-                    document.getElementById('contact-form').reset();
-                }, function (error) {
-                    console.log('FAILED...', error);
-                    statusDiv.html = '<div style="color: #f44336; background: rgba(244, 67, 54, 0.1); padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; border-left: 4px solid #f44336;">❌ Failed to send message. Error: ' + (error.text || 'Unknown error') + '. Please try emailing me directly using the link below.</div>';
-                })
-                .finally(function () {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
-        });
-
-        // Add real-time validation
-        document.getElementById('name').addEventListener('input', function () {
-            if (this.value.trim().length < 2) {
-                this.style.borderColor = '#f44336';
-            } else {
-                this.style.borderColor = '#e74c3c';
-            }
-        });
-
-        document.getElementById('email').addEventListener('input', function () {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(this.value)) {
-                this.style.borderColor = '#f44336';
-            } else {
-                this.style.borderColor = '#e74c3c';
-            }
-        });
-
-        document.getElementById('message').addEventListener('input', function () {
-            if (this.value.trim().length < 10) {
-                this.style.borderColor = '#f44336';
-            } else {
-                this.style.borderColor = '#e74c3c';
-            }
-        });
-    </script>
-
-    <script src="assets/js/social-effects.js"></script>
+    <!-- Contact form script here -->
 
 </body>
 
